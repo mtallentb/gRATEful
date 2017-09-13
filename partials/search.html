@@ -1,0 +1,16 @@
+<div ng-controller="searchCtrl">
+	<div class="row">
+		<form class="col s12">
+		  <div class="row">
+		    <div class="input-field col s12">
+		      <input placeholder="Search a Grateful Dead song" id="song_search" type="text" class="validate" ng-model="songSearch.song">
+		    </div>
+		    <a class="waves-effect waves-light btn" ng-click="searchSong()">Search</a>
+		  </div>
+		</form>
+	</div>
+	<div class="row">
+		<ul class="targetCollection collection">
+		</ul>
+	</div>
+</div>

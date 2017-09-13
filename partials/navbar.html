@@ -1,0 +1,15 @@
+<div ng-controller="navbarCtrl">
+  <nav>
+    <div class="nav-wrapper red darken-4">
+      <a href="#" class="brand-logo">gRATEful</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      	<li><a ng-click="login()">Login</a></li>
+        <li><a ng-click="spotifyLogin()">Log into Spotify</a></li>
+        <!-- <li><a ng-href="https://accounts.spotify.com/authorize?client_id={{client_id}}&response_type=code&redirect_uri={{redirect_uri}}">Login</a></li> -->
+        <li><a href="logout()" class="hide">Logout</a></li>
+       <!--  <li><a href="#" ng-click="getUserData()">Get User Data</a></li> -->
+        <li><a href="#" ng-click="getAlbums()">View All Albums</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
