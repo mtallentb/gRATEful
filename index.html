@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>gRATEful</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script>
+    window.onload = function () {
+      var hash = window.location.hash;
+      if (window.location.search.substring(1).indexOf("error") !== -1) {
+        // login failure
+        window.close();
+      } else if (hash) {
+        // login success
+        var token = window.location.hash.split('&')[0].split('=')[1];
+        localStorage.setItem('spotify-token', token);
+      }
+    }
+  </script>
+</head>
+<body ng-app="gRATEful">
+	<div ng-controller="navbarCtrl">
+		<nav>
+		    <div class="nav-wrapper red darken-4">
+		    	<div class="container">
+			      <a href="#" class="brand-logo">gRATEful</a>
+			      <ul id="nav-mobile" class="right hide-on-med-and-down">
+			      	<li><a id="loginFB" ng-show="!isLoggedIn" ng-click="login()">Login</a></li>
+			        <li><a id="logout"  ng-show="isLoggedIn" ng-click="logOut()">Logout</a></li>
+			       <!--  <li><a href="#" ng-click="getUserData()">Get User Data</a></li> -->
+			        <li><a href="#" ng-show="isLoggedIn" ng-click="getAlbums()">View All Albums</a></li>
+			      </ul>
+		      	</div>
+		    </div>
+		</nav>
+		<div class="container">
+			<div class="row">
+				<form class="col s12" ng-show="isLoggedIn">
+				  <div class="row">
+				    <div class="input-field col s12">
+				      <input placeholder="Search a Grateful Dead song" id="song_search" type="text" ng-model="songSearch.song">
+				    </div>
+				    <a class="waves-effect waves-light btn blue darken-4" ng-click="searchSong()">Search</a>
+				  </div>
+				</form>
+			</div>
+			<div class="row">
+				<ul class="collection" id="targetCollection" ng-show="searching">
+				</ul>
+			</div>
+			<div class="row">
+				<div class="targetDiv">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- CDN links -->
+	<script type="text/javascript" src="./lib/node_modules/firebase/firebase.js"></script>
+	<script type="text/javascript" src="./lib/node_modules/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="./lib/node_modules/angular/angular.min.js"></script>
+	<script type="text/javascript" src="./lib/node_modules/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript" src="./lib/node_modules/angular-spotify/src/angular-spotify.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+
+	<!-- App.js file and credentials -->
+	<script type="text/javascript" src="./app/app.js"></script>
+	<script type="text/javascript" src="./app/values/fb-creds.js"></script>
+	<script type="text/javascript" src="./app/values/spotify-creds.js"></script>
+
+	<!-- Factories -->
+	<script type="text/javascript" src="./app/factories/factory-user.js"></script>
+
+	<!-- Controllers -->
+	<script type="text/javascript" src="./app/controllers/control-user.js"></script>
+	<script type="text/javascript" src="./app/controllers/control-navbar.js"></script>
+
+
+</body>
+</html>
