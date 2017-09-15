@@ -1,0 +1,35 @@
+<div ng-controller="navbarCtrl">
+		<nav>
+		    <div class="nav-wrapper red darken-4">
+		    	<div class="container">
+			      <a href="#" class="brand-logo">gRATEful</a>
+			      <ul id="nav-mobile" class="right hide-on-med-and-down">
+			      	<li><a id="loginFB" ng-show="!isLoggedIn" ng-click="login()">Login</a></li>
+			        <li><a id="logout"  ng-show="isLoggedIn" ng-click="logOut()">Logout</a></li>
+			       <!--  <li><a href="#" ng-click="getUserData()">Get User Data</a></li> -->
+			        <li><a href="#" ng-show="isLoggedIn" ng-click="getAlbums()">View All Albums</a></li>
+			      </ul>
+		      	</div>
+		    </div>
+		</nav>
+		<div class="container">
+			<div class="row">
+				<form class="col s12" ng-show="isLoggedIn">
+				  <div class="row">
+				    <div class="input-field col s12">
+				      <input placeholder="Search a Grateful Dead song" id="song_search" type="text" ng-model="songSearch.song">
+				    </div>
+				    <a class="waves-effect waves-light btn blue darken-4" ng-click="searchSong()">Search</a>
+				  </div>
+				</form>
+			</div>
+			<div class="row">
+				<ul class="collection" id="targetCollection" ng-show="searching">
+				</ul>
+			</div>
+			<div class="row">
+				<div class="targetDiv">
+				</div>
+			</div>
+		</div>
+	</div>

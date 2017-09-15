@@ -1,16 +1,50 @@
-<div ng-controller="searchCtrl">
+<div class="container" ng-show="isLoggedIn">
 	<div class="row">
 		<form class="col s12">
 		  <div class="row">
 		    <div class="input-field col s12">
-		      <input placeholder="Search a Grateful Dead song" id="song_search" type="text" class="validate" ng-model="songSearch.song">
+		      <input placeholder="Search a Grateful Dead song" id="song_search" type="text" ng-model="songSearch.song">
 		    </div>
-		    <a class="waves-effect waves-light btn" ng-click="searchSong()">Search</a>
+		    <a class="waves-effect waves-light btn blue darken-4" ng-click="searchSong()">Search</a>
 		  </div>
 		</form>
 	</div>
 	<div class="row">
-		<ul class="targetCollection collection">
+		<ul class="collection" id="targetCollection" ng-show="showResults">
+			<div ng-show="noResults"><h4>No Results Found</h4></div>
+			<div ng-repeat="item in searchedSongs.items">
+				<li id="song-{{item.id}}">
+			    	<iframe ng-src="{{'https://open.spotify.com/embed?uri=spotify:track:' + item.id | trustAsResourceUrl }}" width="100%" height="80" frameborder="0" allowtransparency="true"></iframe>
+				    <a ng-click=""><i id="fav--{{item.id}}" class="small favs right material-icons">favorite</i></a>
+				    <div id="rateYo" class="right ratings"></div>
+				    <ul class="collapsible" data-collapsible="accordion">
+					    <li>
+					      <div class="collapsible-header">Comments</div>
+					      <div class="collapsible-body">
+							<div class="row">
+							    <form class="col s12">
+							      <div class="row">
+							        <div class="input-field col s6">
+							          <input placeholder="Your Name" id="first_name" type="text">
+							        </div>
+							      </div>
+							      <div class="row">
+							        <div class="col s12">
+							          <div class="input-field col s12">
+							            <textarea  placeholder="Your Comment" id="textarea1" class="materialize-textarea"></textarea>
+							          </div>
+							        </div>
+							      </div>
+							      <div class="row">
+									<a id="submit-{{item.id}}" class="waves-effect waves-light btn blue darken-2" ng-click="submitUserSongData()">Submit</a>
+							      </div>
+							    </form>
+						    </div>
+					      </div>
+					    </li>
+					</ul>
+			    </li>
+			</div>
 		</ul>
 	</div>
 </div>

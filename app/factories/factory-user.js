@@ -6,13 +6,18 @@ app.factory("userFactory", function($q, $rootScope, FBCreds) {
 		currentUser = null;
 	
     /* listens for a change in Firebase's auth state (logged in or out) */
-	firebase.auth().onAuthStateChanged((user) => {
-		if (user){
-			currentUser = user.uid;
-		} else {
-			currentUser = null;
-		}
-	});
+	const isAuthenticated = function (){
+        return new Promise ((resolve, reject) => {
+            firebase.auth().onAuthStateChanged(user => {
+                if (user){
+                    currentUser = user.uid;
+                    resolve(true);
+                }else {
+                    reject(false);
+                }
+            });
+        });
+    };
 
     const loginGoogle = function () {
 		/* returns a promise. Use .then() */

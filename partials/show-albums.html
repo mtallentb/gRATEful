@@ -1,4 +1,20 @@
-<div class="row">
-	<div class="targetDiv">
+<div class="container" ng-show="isLoggedIn">
+	<div class="row">
+		<form class="col s12">
+		  <div class="row">
+		    <div class="input-field col s12">
+		      <input placeholder="Search a Grateful Dead song" id="song_search" type="text" class="validate" ng-model="songSearch.song">
+		    </div>
+		    <a class="waves-effect waves-light btn blue darken-4" ng-click="searchSong()">Search</a>
+		  </div>
+		</form>
+	</div>
+	<div class="row">
+		<ul class="collection" id="targetCollection2" ng-show="showResults">
+		</ul>
+	</div>
+	<div class="row">
+		<div class="targetDiv">
+		</div>
 	</div>
 </div>
