@@ -44,29 +44,18 @@ app.controller("searchCtrl", function($scope, $q, $location,  userFactory, fireb
 		Spotify.search(`'${$scope.songSearch.song}', 'Grateful Dead'`, 'track,artist')
 		.then(function (data) {
 
-				console.log("Data:", data);
+			console.log("Data:", data);
 
-			  	/* rating functionality using rateYo plugin */
-				$(function () {
-				  $(`#rateYo`).rateYo({
-				    starWidth: "20px",
-				    ratedFill: "#2196f3"
-				  })
-				  .on("rateyo.set", function (e, data) {
-					$scope.userSongData.rating = data.rating;
-					console.log("Current Song:", $scope.searchedSongs.items);
-					console.log("Current Rating:", data.rating);
-			      });
-				});
 
-				/* initializes materialize collapsible list functionality */
-				$(document).ready(function(){
-				    $('.collapsible').collapsible();	
-				});
 
-		  	  console.log("Check This:", data.data.tracks);
-			  console.log(data.data.tracks.items);
-			  $scope.searchedSongs = data.data.tracks;
+			/* initializes materialize collapsible list functionality */
+			$(document).ready(function(){
+			    $('.collapsible').collapsible();	
+			});
+
+		  	console.log("Check This:", data.data.tracks);
+			console.log(data.data.tracks.items);
+			$scope.searchedSongs = data.data.tracks;
 
 		    /* lets the user know if no matches are found from the search input */
 		    if (!$scope.searchedSongs.items) {
@@ -75,6 +64,18 @@ app.controller("searchCtrl", function($scope, $q, $location,  userFactory, fireb
 		    } else {
 				$scope.searchedSongs.items.forEach((element, index) => {
 
+				  	/* rating functionality using rateYo plugin */
+					$(function () {
+					  $(`#rateYo--${index}`).rateYo({
+					    starWidth: "20px",
+					    ratedFill: "#2196f3"
+					  })
+					  .on("rateyo.set", function (e, data) {
+						$scope.userSongData.rating = data.rating;
+						console.log("Current Song:", $scope.searchedSongs.items);
+						console.log("Current Rating:", data.rating);
+				      });
+					});
 					/* object that stores user preferences for each song to be pushed to firebase using firebaseFactory */
 					
 					$scope.userSongData = {
@@ -85,17 +86,18 @@ app.controller("searchCtrl", function($scope, $q, $location,  userFactory, fireb
 				        	isFavorited: true  
 				    };
 
-				    /* adding to favorites list on click of the heart icon */
-				    $scope.addToFavorites = function() {
-				    	console.log("Added to Favorites!");
-				    	firebaseFactory.db.ref().push($scope.userSongData);
-				    };
 		      // 	});
 		      	});
 			}
 		});
 	};
 
+    /* adding to favorites list on click of the heart icon */
+    $scope.addToFavorites = function() {
+    	console.log("Added to Favorites!");
+    	firebaseFactory.db.ref().push($scope.userSongData);
+    };
+    
     $scope.removeFromFavorites = function() {
     	$scope.userSongData.isFavorited = false;
     };
