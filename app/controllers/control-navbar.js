@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("navbarCtrl", function($scope, $q, $window, $location, userFactory, Spotify, $route){
+app.controller("navbarCtrl", function($scope, $q, $window, $location, userFactory, firebaseFactory, Spotify, $route){
 
 	$scope.albums = [];
 	$scope.songSearch = {
@@ -51,6 +51,7 @@ app.controller("navbarCtrl", function($scope, $q, $window, $location, userFactor
 		  console.log(data);
 		});
 	};
+
 
 	// /* show list of Grateful Dead albums */
 	// $scope.getAlbums = function() {

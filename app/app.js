@@ -8,26 +8,17 @@ app.run(function (FBCreds) {
     firebase.initializeApp(FBCreds);
 });
 
+/* this allows the Spotify urls to be trusted by angular */
 app.filter('trustAsResourceUrl', ['$sce', function($sce) {
     return function(val) {
         return $sce.trustAsResourceUrl(val);
     };
 }]);
 
-
-
-
-/* 
-if a user is authenticated, resolve true, else reject false
-this is returns a promise whose status is checked in the resolve
-to many of the paths configure with $routeprovider in app.js
-they will be injected when the controller is instantiated, 
-and are available to $scope in that controller under $resolve.
-else a $routeChangeError will be fired 
-*/
+/* checks to see if the user is already logged in. displays links based on status */
 const isAuth = (userFactory) => userFactory.isAuthenticated();
 
-app.config(($routeProvider, SpotifyProvider, SpotifyCreds, $sceProvider) => {
+app.config(($routeProvider, SpotifyProvider, SpotifyCreds) => {
 
     $routeProvider 
     .when('/', {
@@ -46,7 +37,6 @@ app.config(($routeProvider, SpotifyProvider, SpotifyCreds, $sceProvider) => {
     SpotifyProvider.setRedirectUri(`${SpotifyCreds.redirect_uri}`);
     SpotifyProvider.setScope('user-read-private playlist-read-private playlist-modify-private playlist-modify-public');
 
-    $sceProvider.enabled(false);
 });
 
 

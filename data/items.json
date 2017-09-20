@@ -1,0 +1,28 @@
+{
+    "items":{       
+       "item0":{
+          "songTitle": "mow the lawn",
+          "isFavorited": true,
+          "songID": "",
+          "songURL": "",
+          "rating": "",
+          "uid": ""
+        },
+    "item1":{
+          "songTitle": "grade quizzes",
+          "isFavorited": false,
+          "songID": "",
+          "songURL": "",
+          "rating": "",
+          "uid": ""
+        },
+    "item2":{
+          "songTitle": "take a nap",
+          "isFavorited": false,
+          "songID": "",
+          "songURL": "",
+          "rating": "",
+          "uid": ""
+        }
+    }
+}
