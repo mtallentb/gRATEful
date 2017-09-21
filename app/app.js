@@ -31,6 +31,11 @@ app.config(($routeProvider, SpotifyProvider, SpotifyCreds) => {
         controller: 'showAlbumsCtrl'
         // resolve: {isAuth}
     })
+    .when('/favorites', {
+        templateUrl: 'partials/favorites.html',
+        controller: 'favoritesCtrl'
+        // resolve: {isAuth}
+    })
     .otherwise('/');
 
     SpotifyProvider.setClientId(`${SpotifyCreds.client_id}`);

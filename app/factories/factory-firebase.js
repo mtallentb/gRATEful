@@ -26,16 +26,33 @@ app.factory("firebaseFactory", function($q, $http, $rootScope, FBCreds) {
         });
     };
 
-    const getSongData = function(uglyID){
-    	console.log("The UglyID", uglyID);
+    const getSongData = function(){
         return $q((resolve, reject)=>{
-            $http.get(`${url}/items/${uglyID}.json`)
-                .then(items => {
-                	console.log("Data from getSongData()", items);
-                	resolve(items.data);
-                })
-                .catch(error => reject(error));
+        	let userID = getCurrentUser();
+	    	console.log("The UserID", userID);
+        	if (userID === undefined) {
+        		return;
+        	} else {
+	            $http.get(`${url}/items/${userID}.json`)
+	                .then(items => {
+	                	console.log("Data from getSongData()", items);
+	                	resolve(items.data);
+	                })
+	                .catch(error => reject(error));
+        	}
         });
+    };
+
+    const addToFavorites = function(songObj) {
+        let userID = getCurrentUser();
+    	db.ref(`/items/${userID}`).push({
+    		isFavorited: true,
+			songID: songObj.id,
+			songTitle: songObj.name,
+			songURL: songObj.external_urls.spotify,
+			uid: getCurrentUser(),
+			inFB: true
+    	});
     };
 
     const addSongData = function(uglyID, obj) {
@@ -59,36 +76,60 @@ app.factory("firebaseFactory", function($q, $http, $rootScope, FBCreds) {
     };
 
     const rateSong = function(uglySongID, rating) {
-	    let dbRef = db.ref(`/${uglySongID}`);
+        let userID = getCurrentUser();
+	    let dbRef = db.ref(`/items/${userID}/${uglySongID}/`);
 	    dbRef.update({
 	      rating: rating
 	    });
     };
 
-    const updateFavorites = function(uglyID, uglySongID, obj) {
-        return $q((resolve, reject)=>{
-            let newObj = JSON.stringify(obj);
-            $http.patch(`${url}/items/${uglyID}/${uglySongID}.json`, newObj)
-                .then(data=> resolve(data))
-                .catch(error => reject(error));
+    const addRating = function(songObj, rating) {
+        let userID = getCurrentUser();
+        let dbRef = db.ref(`/items/${userID}/`);
+        dbRef.push({
+            rating: rating,
+            songID: songObj.songID,
+            songTitle: songObj.songTitle,
+            songURL: songObj.songURL,
+            uid: userID,
+            inFB: true
         });
     };
 
+    // const updateFavorites = function(uglyID, uglySongID, obj) {
+    //     return $q((resolve, reject)=>{
+    //         let newObj = JSON.stringify(obj);
+    //         $http.patch(`${url}/items/${uglyID}/${uglySongID}.json`, newObj)
+    //             .then(data=> resolve(data))
+    //             .catch(error => reject(error));
+    //     });
+    // };
+
 	/* this pushes the user preference object to firebase. user preferences include the song's rating and whether or not it is favorited */
-	const addToFavorites = function(uglySongID) {
-		let currentUserID = getCurrentUser();
-		db.ref().update({
+	const updateFavorites = function(uglySongID , songObj) {
+        let userID = getCurrentUser();
+		let dbRef = db.ref(`/items/${userID}/${uglySongID}`);
+		dbRef.update({
 			isFavorited: true
 		});
 	};
 
-	const removeFromFavorites = function() {
+	const removeFromFavorites = function(uglySongID) {
+        let userID = getCurrentUser();
+		let dbRef = db.ref(`/items/${userID}/${uglySongID}`);
+		dbRef.update({
+			isFavorited: false
+		});
+	};
 
+	const removeFromFB = function(uglySongID) {
+        let userID = getCurrentUser();
+		db.ref(`/items/${userID}/${uglySongID}`).remove();
 	};
 
 
 
-	return { getCurrentUser, addToFavorites, db, addSongData, getSongData, rateSong, editRating, updateFavorites };
+	return { getCurrentUser, addToFavorites, db, addSongData, getSongData, rateSong, editRating, updateFavorites, addRating, removeFromFB, removeFromFavorites };
 });
 
 

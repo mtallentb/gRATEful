@@ -5,9 +5,10 @@
             <a href="#" class="brand-logo">gRATEful</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li><a id="loginFB" ng-show="!isLoggedIn" ng-click="login()">Login</a></li>
-              <li><a id="logout"  ng-show="isLoggedIn" ng-click="logOut()">Logout</a></li>
+              <li><a ng-show="isLoggedIn" href="#!/favorites">Favorites</a></li>
              <!--  <li><a href="#" ng-click="getUserData()">Get User Data</a></li> -->
               <li><a ng-show="isLoggedIn" href="#!/show-all-albums">View All Albums</a></li>
+              <li><a id="logout"  ng-show="isLoggedIn" ng-click="logOut()">Logout</a></li>
             </ul>
             </div>
         </div>

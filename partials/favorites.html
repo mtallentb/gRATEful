@@ -1,18 +1,5 @@
 <div class="container" ng-show="isLoggedIn">
-	<div class="row">
-
-	  	<!-- SEARCH BAR -->
-		<form class="col s12">
-		  <div class="row">
-		    <div class="input-field col s12">
-		      <input placeholder="Search a Grateful Dead song" id="song_search" type="text" ng-model="songSearch.song"  ng-keyup="$event.keyCode == 13 && searchSong()">
-		    </div>
-		    <a class="waves-effect waves-light btn blue darken-4" ng-click="searchSong()">Search</a>
-		  </div>
-		</form>
-		<!-- END SEARCH -->
-
-	</div>
+	<div ng-keyup="$event.keyCode == 13 && searchSong()"></div>
 	<div class="row">
 		<ul class="collection" id="targetCollection" ng-show="showResults">
 
@@ -20,33 +7,18 @@
 			<div ng-show="noResults"><h4>No Results Found</h4></div>
 
 			<!-- FOR EACH SONG THAT COMES BACK FROM SPOTIFY SEARCH -->
-			<div ng-repeat="item in searchedSongs.items track by $index">
+			<div ng-repeat="item in dataFromFB track by $index">
 
 				<!-- BEGINNING OF FULL SONG LIST ITEM -->
-				<li id="song-{{item.id}}">
+				<li id="song-{{item.songID}}" ng-show="item.isFavorited">
 
 					<!-- SPOTIFY PLAYER EMBED -->
-			    	<iframe ng-src="{{'https://open.spotify.com/embed?uri=spotify:track:' + item.id | trustAsResourceUrl }}" width="100%" height="80" frameborder="0" allowtransparency="true"></iframe>
-
-					<!-- BEGINNING OF FAVORITE BUTTONS -->
-			    	<div ng-show="songIDsFromFB.indexOf(searchedSongs.items[$index].id) != -1">
-			    		
-			    		<!-- FOR EACH SONG IN FIRBASE -->
-						<div ng-repeat="song in dataFromFB">
+			    	<iframe ng-src="{{'https://open.spotify.com/embed?uri=spotify:track:' + item.songID | trustAsResourceUrl }}" width="100%" height="80" frameborder="0" allowtransparency="true"></iframe>
 					    	
-					    	<!-- FAVORITE BUTTON FOR SONGS IN FIREBASE -->
-						    <a ng-click="addToFavorites(searchedSongs.items[$index])" ng-show="{{song.songID === item.id}}">
-						    	<i id="fav--{{song.songID}}" class="small favs right material-icons">{{song.isFavorited ? 'favorite' : 'favorite_border'}}</i>
-						    </a>
-					    </div>
-				    </div>
-					<div ng-show="songIDsFromFB.indexOf(searchedSongs.items[$index].id) == -1">
-						
-						<!-- FAVORITE BUTTON FOR SONGS NOT FOUND IN FIREBASE -->
-					    <a ng-click="addToFavorites(searchedSongs.items[$index])">
-					    	<i id="fav--{{song.songID}}" class="small favs right material-icons">favorite_border</i>
-					    </a>
-				    </div>
+			    	<!-- FAVORITE BUTTON FOR SONGS IN FIREBASE -->
+				    <a ng-click="removeFromFavorites(item); item.isFavorited=false">
+				    	<i id="fav--{{song.songID}}" class="small favs right material-icons">block</i>
+				    </a>
 					<!-- END OF FAVORITE BUTTONS -->
 
 					<!-- RATING STARS -->

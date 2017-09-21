@@ -33,7 +33,7 @@ app.factory("userFactory", function($q, $rootScope, FBCreds) {
 		return currentUser;
 	};
 
-	return { loginGoogle, logOut, getUser};
+	return { loginGoogle, logOut, getUser };
 });
 
 
