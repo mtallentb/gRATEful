@@ -31,7 +31,7 @@
 					<!-- BEGINNING OF FAVORITE BUTTONS -->
 			    	<div ng-show="songIDsFromFB.indexOf(searchedSongs.items[$index].id) != -1">
 			    		
-			    		<!-- FOR EACH SONG IN FIRBASE -->
+			    		<!-- FOR EACH SONG IN FIREBASE -->
 						<div ng-repeat="song in dataFromFB">
 					    	
 					    	<!-- FAVORITE BUTTON FOR SONGS IN FIREBASE -->
@@ -40,17 +40,32 @@
 						    </a>
 					    </div>
 				    </div>
+
+					<!-- FAVORITE BUTTON FOR SONGS NOT FOUND IN FIREBASE -->
 					<div ng-show="songIDsFromFB.indexOf(searchedSongs.items[$index].id) == -1">
-						
-						<!-- FAVORITE BUTTON FOR SONGS NOT FOUND IN FIREBASE -->
 					    <a ng-click="addToFavorites(searchedSongs.items[$index])">
 					    	<i id="fav--{{song.songID}}" class="small favs right material-icons">favorite_border</i>
 					    </a>
 				    </div>
+
 					<!-- END OF FAVORITE BUTTONS -->
 
 					<!-- RATING STARS -->
 				    <div id="rateYo--{{$index}}" class="right ratings"></div>
+
+				    <!-- UPVOTE/DOWNVOTE -->
+				    <div id="upvote--${{$index}}">
+				    	<a ng-click="downvote(item)">
+							<i id="downvote--{{song.songID}}" class="small  right material-icons">arrow_drop_down</i>
+						</a>
+						<div ng-repeat="vote in voteCounts">
+							<h5 ng-show="{{vote.songID === item.id}}" class="right voteCount">{{vote.vote}}</h5>
+						</div>
+						<h5 ng-show="{{voteSongIDs.indexOf(item.id) == -1}}" class="right voteCount">{{isVoted ? '' : 0}}</h5>
+				    	<a ng-click="upvote(item)">
+							<i id="upvote--{{song.songID}}" class="small right material-icons">arrow_drop_up</i>
+						</a>
+				    </div>
 
 					<!-- COLLAPSIBLE COMMENT SECTION -->
 				    <ul class="collapsible" data-collapsible="accordion">

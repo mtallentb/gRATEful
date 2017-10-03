@@ -54,36 +54,42 @@ app.controller("favoritesCtrl", function($scope, $q, $location,  userFactory, fi
 
 	/* search Spotify for track names. adds Grateful Dead as the artist automatically */
 	$scope.searchSong = function() {
- 
-		/* makes sure 'No Results Found' is hidden */
-		$scope.noResults = false;
 
-		/* uses ng-show to show the collection of embedded Spotify songs */
-		$scope.showResults = true;
-
-		/* retrieves data from firebase */
-		firebaseFactory.getSongData(firebaseFactory.getCurrentUser())
-		.then((FBdata) => {
-			if (FBdata) {
-				let keys = Object.keys(FBdata);
-				keys.forEach((keyItem, keyIndex) => {
-					theSong = FBdata[keyItem];
-					// console.log("theSong", theSong);
-					theSong.fbID = keys[keyIndex];
-					// console.log("theSong.fbID", theSong.fbID);
-					// console.log("theSong.songID", theSong.songID);
-					// console.log("Song Rating of " + theSong.songTitle + " from FB: ", theSong.rating);
-					$scope.dataFromFB.push(theSong);
-					$scope.songIDsFromFB.push(theSong.songID);
-					// ratingsFromFB.push(theSong.rating);
-					// console.log("Key index:", keyIndex);
-				});	
-				// console.log("dataFromFB", $scope.dataFromFB);
-			}
+		$(document).ready(function(){
+		    $('.collapsible').collapsible();	
 		});
+        
+        /* initializes materialize collapsible list functionality */
+ 
+        /* makes sure 'No Results Found' is hidden */
+        $scope.noResults = false;
 
-		$scope.dataFromFB.forEach((item, position) => {
-			console.log("FB ITEM: ", item);
+        /* uses ng-show to show the collection of embedded Spotify songs */
+        $scope.showResults = true;
+
+        /* retrieves data from firebase */
+        firebaseFactory.getSongData(firebaseFactory.getCurrentUser())
+        .then((FBdata) => {
+            if (FBdata) {
+                let keys = Object.keys(FBdata);
+                keys.forEach((keyItem, keyIndex) => {
+                    theSong = FBdata[keyItem];
+                    // console.log("theSong", theSong);
+                    theSong.fbID = keys[keyIndex];
+                    // console.log("theSong.fbID", theSong.fbID);
+                    // console.log("theSong.songID", theSong.songID);
+                    // console.log("Song Rating of " + theSong.songTitle + " from FB: ", theSong.rating);
+                    $scope.dataFromFB.push(theSong);
+                    $scope.songIDsFromFB.push(theSong.songID);
+                    // ratingsFromFB.push(theSong.rating);
+                    // console.log("Key index:", keyIndex);
+                }); 
+                console.log("dataFromFB", $scope.dataFromFB);
+            }
+        });
+
+        $scope.dataFromFB.forEach((item, position) => {
+            console.log("FB ITEM: ", item);
 			$(function () {
 				$(`#rateYo--${position}`).rateYo({  
 					rating:  item.rating,

@@ -26,33 +26,80 @@ app.factory("firebaseFactory", function($q, $http, $rootScope, FBCreds) {
         });
     };
 
+    const getVotes = function() {
+        return $q((resolve, reject)=>{
+            let userID = getCurrentUser();
+            if (userID === undefined) {
+                return;
+            } else {
+                $http.get(`${url}/votes/.json`)
+                    .then(items => {
+                        // console.log("Vote Data", items.data);
+                        resolve(items.data);
+                    })
+                    .catch(error => {
+                        console.log("ERROR WITH VOTES");
+                        reject(error);
+                    });
+            }
+        });
+    };
+
+    const addUpVote = function(item) {
+        db.ref(`/votes/`).push({
+            vote: 1,
+            songID: item.id,
+            songTitle: item.name
+        });
+    };
+
+    const addDownVote = function(item) {
+        db.ref(`/votes/`).push({
+            vote: -1,
+            songID: item.id,
+            songTitle: item.name
+        });
+    };
+
+    const updateUpVote = function(uglySongID, vote) {
+        db.ref(`/votes/${uglySongID}/`).update({
+            vote: vote + 1
+        });
+    };
+
+    const updateDownVote = function(uglySongID, vote) {
+        db.ref(`/votes/${uglySongID}/`).update({
+            vote: vote - 1
+        });
+    };
+
     const getSongData = function(){
         return $q((resolve, reject)=>{
-        	let userID = getCurrentUser();
-	    	console.log("The UserID", userID);
-        	if (userID === undefined) {
-        		return;
-        	} else {
-	            $http.get(`${url}/items/${userID}.json`)
-	                .then(items => {
-	                	console.log("Data from getSongData()", items);
-	                	resolve(items.data);
-	                })
-	                .catch(error => reject(error));
-        	}
+            let userID = getCurrentUser();
+            console.log("The UserID", userID);
+            if (userID === undefined) {
+                return;
+            } else {
+                $http.get(`${url}/items/${userID}.json`)
+                    .then(items => {
+                        console.log("Data from getSongData()", items);
+                        resolve(items.data);
+                    })
+                    .catch(error => reject(error));
+            }
         });
     };
 
     const addToFavorites = function(songObj) {
         let userID = getCurrentUser();
-    	db.ref(`/items/${userID}`).push({
-    		isFavorited: true,
-			songID: songObj.id,
-			songTitle: songObj.name,
-			songURL: songObj.external_urls.spotify,
-			uid: getCurrentUser(),
-			inFB: true
-    	});
+        db.ref(`/items/${userID}`).push({
+            isFavorited: true,
+            songID: songObj.id,
+            songTitle: songObj.name,
+            songURL: songObj.external_urls.spotify,
+            uid: getCurrentUser(),
+            inFB: true
+        });
     };
 
     const addSongData = function(uglyID, obj) {
@@ -77,11 +124,12 @@ app.factory("firebaseFactory", function($q, $http, $rootScope, FBCreds) {
 
     const rateSong = function(uglySongID, rating) {
         let userID = getCurrentUser();
-	    let dbRef = db.ref(`/items/${userID}/${uglySongID}/`);
-	    dbRef.update({
-	      rating: rating
-	    });
+        let dbRef = db.ref(`/items/${userID}/${uglySongID}/`);
+        dbRef.update({
+          rating: rating
+        });
     };
+
 
     const addRating = function(songObj, rating) {
         let userID = getCurrentUser();
@@ -129,7 +177,7 @@ app.factory("firebaseFactory", function($q, $http, $rootScope, FBCreds) {
 
 
 
-	return { getCurrentUser, addToFavorites, db, addSongData, getSongData, rateSong, editRating, updateFavorites, addRating, removeFromFB, removeFromFavorites };
+	return { getCurrentUser, addToFavorites, db, addSongData, getSongData, rateSong, editRating, updateFavorites, addRating, removeFromFB, removeFromFavorites, getVotes, addUpVote, updateUpVote, updateDownVote };
 });
 
 

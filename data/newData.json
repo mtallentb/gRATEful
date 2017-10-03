@@ -1,0 +1,114 @@
+{
+  "items" : {
+    "BIzbBb8JdXQWK3CtflpSAuWr3Vb2" : {
+      "-Kv3i852vZ6Ir9e38U2W" : {
+        "inFB" : true,
+        "isFavorited" : true,
+        "rating" : 2.3,
+        "songID" : "2LBfRZH63vuO7iW9J8zgz2",
+        "songTitle" : "Morning Dew - Live at The Lyceum Theatre, London, England 5/26/72 [Remastered]",
+        "songURL" : "https://open.spotify.com/track/2LBfRZH63vuO7iW9J8zgz2",
+        "uid" : "BIzbBb8JdXQWK3CtflpSAuWr3Vb2"
+      },
+      "-Kv3i9DOl9zU13O3liL3" : {
+        "inFB" : true,
+        "isFavorited" : true,
+        "rating" : 4.3,
+        "songID" : "0shBLNwbMS8i903cWwnwln",
+        "songTitle" : "Morning Dew - Live at Barton Hall, Cornell University, Ithaca, NY 5/8/77",
+        "songURL" : "https://open.spotify.com/track/0shBLNwbMS8i903cWwnwln",
+        "uid" : "BIzbBb8JdXQWK3CtflpSAuWr3Vb2"
+      },
+      "-Kv3i9dPFDDVas0nW2x0" : {
+        "inFB" : true,
+        "isFavorited" : true,
+        "rating" : 3.6,
+        "songID" : "5MKg9CVQ5YrCOzA9QOIv7V",
+        "songTitle" : "Morning Dew - Remastered",
+        "songURL" : "https://open.spotify.com/track/5MKg9CVQ5YrCOzA9QOIv7V",
+        "uid" : "BIzbBb8JdXQWK3CtflpSAuWr3Vb2"
+      },
+      "-Kv3iBB48QNcUbJVxqt5" : {
+        "inFB" : true,
+        "rating" : 2.3,
+        "songID" : "7fCTruy1ZspFeMdgAENzCe",
+        "songTitle" : "Morning Dew",
+        "songURL" : "https://open.spotify.com/track/7fCTruy1ZspFeMdgAENzCe",
+        "uid" : "BIzbBb8JdXQWK3CtflpSAuWr3Vb2"
+      },
+      "-Kv3iUSstcQj5wreNcez" : {
+        "inFB" : true,
+        "rating" : 3.7,
+        "songID" : "1YbBwQn8AKyJO9Ys1MPk9X",
+        "songTitle" : "Morning Dew - Remastered",
+        "songURL" : "https://open.spotify.com/track/1YbBwQn8AKyJO9Ys1MPk9X",
+        "uid" : "BIzbBb8JdXQWK3CtflpSAuWr3Vb2"
+      },
+      "-Kv3im2RaCqtC9r0MYaL" : {
+        "inFB" : true,
+        "isFavorited" : true,
+        "rating" : 3.5,
+        "songID" : "3uR6MdX4bfTkel6seC0g8g",
+        "songTitle" : "Dark Star - Live at The Fillmore East, New York, NY 2/14/70",
+        "songURL" : "https://open.spotify.com/track/3uR6MdX4bfTkel6seC0g8g",
+        "uid" : "BIzbBb8JdXQWK3CtflpSAuWr3Vb2"
+      }
+    }
+  },
+  "votes" : {
+    "BIzbBb8JdXQWK3CtflpSAuWr3Vb2" : {
+        "-Kv3i852vZ6Ir9e38U2W" : {
+          "inFB" : true,
+          "isFavorited" : true,
+          "rating" : 2.3,
+          "songID" : "2LBfRZH63vuO7iW9J8zgz2",
+          "songTitle" : "Morning Dew - Live at The Lyceum Theatre, London, England 5/26/72 [Remastered]",
+          "songURL" : "https://open.spotify.com/track/2LBfRZH63vuO7iW9J8zgz2",
+          "uid" : "BIzbBb8JdXQWK3CtflpSAuWr3Vb2"
+        },
+        "-Kv3i9DOl9zU13O3liL3" : {
+          "inFB" : true,
+          "isFavorited" : true,
+          "rating" : 4.3,
+          "songID" : "0shBLNwbMS8i903cWwnwln",
+          "songTitle" : "Morning Dew - Live at Barton Hall, Cornell University, Ithaca, NY 5/8/77",
+          "songURL" : "https://open.spotify.com/track/0shBLNwbMS8i903cWwnwln",
+          "uid" : "BIzbBb8JdXQWK3CtflpSAuWr3Vb2"
+        },
+        "-Kv3i9dPFDDVas0nW2x0" : {
+          "inFB" : true,
+          "isFavorited" : true,
+          "rating" : 3.6,
+          "songID" : "5MKg9CVQ5YrCOzA9QOIv7V",
+          "songTitle" : "Morning Dew - Remastered",
+          "songURL" : "https://open.spotify.com/track/5MKg9CVQ5YrCOzA9QOIv7V",
+          "uid" : "BIzbBb8JdXQWK3CtflpSAuWr3Vb2"
+        },
+        "-Kv3iBB48QNcUbJVxqt5" : {
+          "inFB" : true,
+          "rating" : 2.3,
+          "songID" : "7fCTruy1ZspFeMdgAENzCe",
+          "songTitle" : "Morning Dew",
+          "songURL" : "https://open.spotify.com/track/7fCTruy1ZspFeMdgAENzCe",
+          "uid" : "BIzbBb8JdXQWK3CtflpSAuWr3Vb2"
+        },
+        "-Kv3iUSstcQj5wreNcez" : {
+          "inFB" : true,
+          "rating" : 3.7,
+          "songID" : "1YbBwQn8AKyJO9Ys1MPk9X",
+          "songTitle" : "Morning Dew - Remastered",
+          "songURL" : "https://open.spotify.com/track/1YbBwQn8AKyJO9Ys1MPk9X",
+          "uid" : "BIzbBb8JdXQWK3CtflpSAuWr3Vb2"
+        },
+        "-Kv3im2RaCqtC9r0MYaL" : {
+          "inFB" : true,
+          "isFavorited" : true,
+          "rating" : 3.5,
+          "songID" : "3uR6MdX4bfTkel6seC0g8g",
+          "songTitle" : "Dark Star - Live at The Fillmore East, New York, NY 2/14/70",
+          "songURL" : "https://open.spotify.com/track/3uR6MdX4bfTkel6seC0g8g",
+          "uid" : "BIzbBb8JdXQWK3CtflpSAuWr3Vb2"
+        }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 "use strict";
 
 
-const app = angular.module("gRATEful", ["ngRoute" , "spotify"]);
+const app = angular.module("gRATEful", ["ngRoute" , "spotify", "firebase"]);
 
 /* initializes firebase */
 app.run(function (FBCreds) {
